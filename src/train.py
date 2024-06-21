@@ -7,6 +7,7 @@ import torch
 from lightning import Callback, LightningDataModule, LightningModule, Trainer
 from lightning.pytorch.loggers import Logger
 from omegaconf import DictConfig
+from clearml import Task
 
 rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 # ------------------------------------------------------------------------------------ #
@@ -115,6 +116,10 @@ def main(cfg: DictConfig) -> Optional[float]:
     # apply extra utilities
     # (e.g. ask for tags if none are provided in cfg, print cfg tree, etc.)
     extras(cfg)
+    
+    if cfg.get("clearml_task"):
+        # print("enter here")
+        task = Task.init(project_name=cfg.clearml_project, task_name=cfg.clearml_task)
 
     # train the model
     metric_dict, _ = train(cfg)

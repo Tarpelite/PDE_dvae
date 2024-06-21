@@ -18,8 +18,8 @@ net:
   modes1: 16
   modes2: 16
   width: 20
-  n_embeddings: 64
-  embedding_dim: 512
+  n_embeddings: 128
+  embedding_dim: 1024
   beta: 0.25
 
 # compile model for faster training with pytorch 2.0

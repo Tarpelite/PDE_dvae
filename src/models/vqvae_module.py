@@ -86,7 +86,7 @@ class VQVAEModule(LightningModule):
         self.log("train/ppl", self.train_ppl, on_step=True, on_epoch=True, prog_bar=True)
         # self.log("train/acc", self.train_acc, on_step=False, on_epoch=True, prog_bar=True)
 
-        return mse_loss
+        return mse_loss + embedding_loss
     
     def on_train_epoch_end(self) -> None:
         "Lightning hook that is called when a training epoch ends."
